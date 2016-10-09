@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'gradle-one-jar'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:4.3.3.RELEASE'
+    compile 'org.jboss.resteasy:resteasy-client:3.0.11.Final'
+    compile 'org.jboss.resteasy:resteasy-jackson-provider:3.0.11.Final'
+    compile 'log4j:log4j:1.2.17'
+
+    testCompile 'junit:junit:4.11'
+}
+
+task awesomeFunJar(type: OneJar) {
+    mainClass = 'com.goeuro.Application'
+    archiveName = 'GoEuroTest.jar'
+    mergeManifestFromJar = true
+}
+
+artifacts {
+    archives awesomeFunJar
+}
